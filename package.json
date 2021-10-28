@@ -1,0 +1,25 @@
+{
+  "name": "pve-api",
+  "version": "0.0.1",
+  "description": "Proxmox PVE Api Bindings",
+  "main": "./lib/pve-api.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denny0754/pve-api.git"
+  },
+  "keywords": [
+    "proxmox",
+    "pve",
+    "api"
+  ],
+  "author": "Diego Vaccher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/denny0754/pve-api/issues"
+  },
+  "homepage": "https://github.com/denny0754/pve-api#readme",
+  "dependencies": {
+    "node-libcurl": "^2.3.3",
+    "winston": "^3.3.3"
+  }
+}
