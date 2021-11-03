@@ -1,6 +1,6 @@
 {
   "name": "pve-api",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Proxmox PVE Api Bindings",
   "main": "./lib/pve-api.js",
   "repository": {
