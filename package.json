@@ -7,6 +7,9 @@
     "type": "git",
     "url": "git+https://github.com/denny0754/pve-api.git"
   },
+  "scripts": {
+    "test": "mocha --recursive"
+  },
   "keywords": [
     "proxmox",
     "pve",
@@ -20,6 +23,11 @@
   "homepage": "https://github.com/denny0754/pve-api#readme",
   "dependencies": {
     "node-libcurl": "^2.3.3",
+    "node-pre-gyp": "^0.17.0",
     "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "mocha": "^9.1.3"
   }
 }
