@@ -19,8 +19,8 @@ describe('storage.get', () => {
     }).timeout(10000);
 
     it('STANDALONE_200_OK', async () => {
-        delete require.cache[require.resolve('../../lib/pve-storage/api')];
-        const pve_storage_api = require('../../lib/pve-storage/api')(
+        delete require.cache[require.resolve('../../lib/pve-storage-api')];
+        const pve_storage_api = require('../../lib/pve-storage-api')(
             process.env.UNAME,
             process.env.PASSWORD,
             process.env.REALM || 'pam',
