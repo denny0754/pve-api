@@ -7,7 +7,7 @@ const pveapi = require('../../lib/pve-api')(
     process.env.HOST
 );
 
-describe('root.version', () => {
+describe('version.get', () => {
     it('Version', async () => {
         pveapi.SetSslVerifyHost(false);
         pveapi.SetSslVerifyPeer(false);
