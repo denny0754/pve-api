@@ -4,7 +4,8 @@ const pveapi = require('../../lib/pve-api')(
     process.env.UNAME,
     process.env.PASSWORD,
     process.env.REALM || 'pam',
-    process.env.HOST
+    process.env.HOST_NAME || process.env.HOST_IPV4,
+    process.env.VERBOSE_LEVEL || -1
 );
 
 describe('version.get', () => {
