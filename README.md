@@ -76,3 +76,4 @@ Where:
 - [ ] Possibility to make requests using an API Token/Key
 - [ ] Tests
 - [ ] Cleaner codebase and documentation
+- [ ] Callbacks
