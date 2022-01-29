@@ -16,7 +16,7 @@
     "api"
   ],
   "author": "Diego Vaccher",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/denny0754/pve-api/issues"
   },
