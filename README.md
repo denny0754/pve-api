@@ -1,43 +1,79 @@
 # pve-api
 
-## __Introduction__
+## Introduction
 
-`pve-api` is designed to be easy to use by straight up following the structure of the Proxmox PVE API (see [Proxmox API](https://pve.proxmox.com/pve-docs/api-viewer/#/storage)). As a matter of facts, you can just follow any route found in the [Proxmox API](https://pve.proxmox.com/pve-docs/api-viewer/#/storage) and convert it into code.
+`pve-api` is designed to be easy to use by straight up following the structure of the Proxmox VE API found at the following link: [Proxmox VE API](https://pve.proxmox.com/pve-docs/api-viewer).
 
-Here's a simple example of how `pve-api`'s conversion is used:
+You can easily build the function to call for a given route by looking at the Proxmox VE API viewer.
 
-___Getting all LXC instances___
+Here's an example that shows how to get the current configuration of a running LXC
 
-_Proxmox API_:
-```bash
-pvesh get /nodes/{node}/lxc
+The API viewer's path is:
 ```
-_or_
-```bash
-curl -XGET -d ... 'https://example.com:8006/api2/json/nodes/NODE_ID/lxc'
+/nodes/{node}/lxc/{vmid}/config
 ```
 
-_pve-api_: 
+`pve-api`'s approach is:
+```js
+let lxcConfig = pve_api.Nodes.Node('NODDID').Lxc.Vmid('VMID').Config.Get({ ...params });
+```
+
+## __Why modular?__
+
+`pve-api` was designed to be modular for a simple and logical reason: you won't always need the full feature set of a library.
+
+This is why `pve-api` was designed and sub-divided into five smaller modules, each representing a main route on the PVE API viewer, that is: `/access`, `/nodes`, `/cluster`, `/pools` and `/storage`.
+
+_Note: the `/cluster` nodes is still under development and thus not available._
+
+## __Usage__
+
+In order to use `pve-api` you're required to have `npm` installed. Right now the library is developed and tested under `npm` version `8.1.0`.
+
+Having `npm` installed, you can install `pve-api` by executing the following command under your project's folder:
+
+```bash
+npm install pve-api
+```
+
+From then on you can start using by including it in your projects:
+
 ```javascript
 // Using the all-in-one API Module
 const pveapi = require('pve-api')(
-        uname, // Username by which you login to Proxmox
-        pwd,   // Password of the User
+        uname, // Username
+        pwd,   // Password
         realm, // REALM of the User(PAM, PVE Auth, OpenID, ...)
         host,  // Hostname or IPv4
         verboseLevel // Verbosity of messages - default is 0(only errors and criticals)
     );
 
-var response = await pveapi.Nodes.Node('NODE_ID').Get();
-
 // Using the stand-alone API Module
 const pve_nodes_api = require('pve-nodes-api')(
-    uname,
-    pwd,
-    realm,
-    host,
-    verboseLevel
+    uname,  // Username
+    pwd,    // Password
+    realm,  // REALM of the User(PAM, PVE Auth, OpenID, ...)
+    host,   // Hostname or IPv4
+    verboseLevel // Verbosity of messages - default is 0(only errors and criticals)
 );
 
-var response = pve_nodes_api.Node('NODE_ID').Get();
 ```
+Where:
+
+- `username`: is the User you use to login to Proxmox VE.
+- `password`: is the User's password
+- `realm`: by default it's `PAM`.
+- `host`: hostname or IPv4 of the server hosting Proxmox VE
+- `verboseLevel`: 
+    - 0(default): Errors, Criticals
+    - 1: Warnings, Errors, Criticals
+    - 2: Info, Warnings, Errors, Criticals
+    - 3: Debug, Info, Warnings, Errors, Criticals
+
+## __In progress__
+
+- [ ] `pve-api-cluster` module
+- [ ] Possibility to make requests using an API Token/Key
+- [ ] Tests
+- [ ] Cleaner codebase and documentation
+- [ ] Callbacks
